@@ -16,7 +16,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Debug Initial Paths
+    - name: Debug Paths
       run: |
         echo "Current directory: $(pwd)"
         ls -la
@@ -31,23 +31,17 @@ jobs:
         mkdir -p build
         cd build
         cmake ../skt_lab02 -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release || { echo "CMake configuration failed"; exit 1; }
-        echo "Contents of build:"
-        ls -la
 
     - name: Build Project
       run: |
         cd build
         cmake --build . || { echo "Build failed"; exit 1; }
-        echo "Contents of build after build:"
-        ls -la
 
-    - name: Debug Before Tests
+    - name: Copy Required Files
       run: |
-        echo "Current directory: $(pwd)"
-        echo "Contents of build:"
-        ls -la build
-        echo "Contents of skt_lab02:"
-        ls -la skt_lab02
+        cp skt_lab02/area.txt build/
+        cp skt_lab02/config.txt build/
+        cp skt_lab02/receivers.txt build/
 
     - name: Run Tests
       run: |
