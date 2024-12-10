@@ -42,6 +42,5 @@ jobs:
 
     - name: Run Tests
       run: |
-        cd build
-        echo $(pwd)
-        ./SKT_Lab02 || { echo "Test run failed"; exit 1; }
+        cd skt_lab02
+        ../build/SKT_Lab02 || { echo "Test run failed"; exit 1; }
