@@ -40,7 +40,4 @@ jobs:
     - name: Run Tests
       run: |
         cd build
-        ./SKT_Lab02 \
-          ${{ github.workspace }}/skt_lab02/area.txt \
-          ${{ github.workspace }}/skt_lab02/receivers.txt \
-          ${{ github.workspace }}/skt_lab02/config.txt || { echo "Test run failed"; exit 1; }
+        ./SKT_Lab02
