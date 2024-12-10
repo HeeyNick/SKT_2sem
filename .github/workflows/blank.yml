@@ -36,8 +36,3 @@ jobs:
       run: |
         cd build
         cmake --build . || { echo "Build failed"; exit 1; }
-
-    # - name: Run Tests
-      # run: |
-        # cd build
-        # ./SKT_Lab02
