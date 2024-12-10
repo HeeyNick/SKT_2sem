@@ -3,7 +3,7 @@
 int main()
 {
     inverse bla;
-    bla.input("../area.txt", "../receivers.txt", "../config.txt");
+    bla.input("skt_lab02/area.txt", "skt_lab02/receivers.txt", "skt_lab02/config.txt");
     bla.calc();
 
     cout << "Hello World!" << endl;
