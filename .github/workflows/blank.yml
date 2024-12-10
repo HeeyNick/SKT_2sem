@@ -23,13 +23,13 @@ jobs:
       run: |
         mkdir -p build
         cd build
-        cmake .. # Генерация файлов сборки
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release # Укажите путь только один раз
 
     - name: Build Project
       run: |
         cd build
         cmake --build . --target clean
-        make || { echo "Ошибка сборки"; exit 1; }
+        cmake --build . || { echo "Ошибка сборки"; exit 1; }
 
     - name: Run Tests
       run: |
