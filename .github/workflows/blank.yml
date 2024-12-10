@@ -36,3 +36,8 @@ jobs:
       run: |
         cd build
         cmake --build . || { echo "Build failed"; exit 1; }
+    - name: Make artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: SKT_lab02
+        path: dist/*
