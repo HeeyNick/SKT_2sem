@@ -37,13 +37,10 @@ jobs:
         cd build
         cmake --build . || { echo "Build failed"; exit 1; }
 
-    - name: Copy Required Files
-      run: |
-        cp skt_lab02/area.txt build/
-        cp skt_lab02/config.txt build/
-        cp skt_lab02/receivers.txt build/
-
     - name: Run Tests
       run: |
         cd build
-        ./SKT_Lab02 || { echo "Test run failed"; exit 1; }
+        ./SKT_Lab02 \
+          ${{ github.workspace }}/skt_lab02/area.txt \
+          ${{ github.workspace }}/skt_lab02/receivers.txt \
+          ${{ github.workspace }}/skt_lab02/config.txt || { echo "Test run failed"; exit 1; }
