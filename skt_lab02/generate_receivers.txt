@@ -1,0 +1,11 @@
+echo 800 > receivers.txt
+for i in `LANG=C seq -1995 10 6000`
+do
+	echo "${i} 0 0" >> receivers.txt
+done
+
+echo 1800 > receivers.txt
+for i in `LANG=C seq -7995 10 10000`
+do
+	echo "${i} 0 0" >> receivers.txt
+done
