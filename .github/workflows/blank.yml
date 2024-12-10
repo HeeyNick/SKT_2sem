@@ -33,14 +33,20 @@ jobs:
         mkdir -p build
         cd build
         cmake ../skt_lab02 -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release || { echo "CMake configuration failed"; exit 1; }
-        ls -la
+        ls -la # Проверка содержимого папки сборки
 
     - name: Build Project
       run: |
         cd build
         cmake --build . || { echo "Build failed"; exit 1; }
 
+    - name: Copy Required Files
+      run: |
+        cp skt_lab02/area.txt build/
+        cp skt_lab02/receivers.txt build/
+        cp skt_lab02/config.txt build/
+
     - name: Run Tests
       run: |
-        cd skt_lab02
-        ../build/SKT_Lab02 || { echo "Test run failed"; exit 1; }
+        cd build
+        ./SKT_Lab02 || { echo "Test run failed"; exit 1; }
