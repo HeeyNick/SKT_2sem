@@ -19,10 +19,19 @@ jobs:
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y cmake build-essential
 
-    - name: Build and Test Project
+    - name: Configure CMake
       run: |
         mkdir -p build
         cd build
+        cmake .. # Генерация файлов сборки
+
+    - name: Build Project
+      run: |
+        cd build
         cmake --build . --target clean
-        cmake .. && make || { echo "Ошибка сборки"; exit 1; }
+        make || { echo "Ошибка сборки"; exit 1; }
+
+    - name: Run Tests
+      run: |
+        cd build
         ./SKT_Lab02
