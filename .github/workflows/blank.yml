@@ -16,6 +16,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Debug Paths
+      run: |
+        echo "Current directory: $(pwd)"
+        ls -la
+        echo "Contents of project folder:"
+        ls -la ${{ github.workspace }}
+
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y cmake build-essential
 
@@ -23,15 +30,15 @@ jobs:
       run: |
         mkdir -p build
         cd build
-        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release # Укажите путь только один раз
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release || { echo "CMake configuration failed"; exit 1; }
+        ls -la
 
     - name: Build Project
       run: |
         cd build
-        cmake --build . --target clean
-        cmake --build . || { echo "Ошибка сборки"; exit 1; }
+        cmake --build . || { echo "Build failed"; exit 1; }
 
     - name: Run Tests
       run: |
         cd build
-        ./SKT_Lab02
+        ./SKT_Lab02 || { echo "Test run failed"; exit 1; }
